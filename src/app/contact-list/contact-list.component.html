@@ -1,0 +1,26 @@
+@for(contact of contacts; track contact){
+<div
+  class="w-auto container m-10 border-2 border-red-800 rounded-tl-xl rounded-br-xl p-5"
+>
+  <h2 class="font-bold mb-2 text-lg">
+    {{ contact.fname }} {{ contact.lname }}
+  </h2>
+  <p class="p-1">{{ contact.number }}</p>
+  <p class="p-1">{{ contact.emailAdr }}</p>
+  <div class="w-auto flex items-center justify-end">
+    <hr class="flex-grow" />
+    <button
+      class="m-3 px-2 py-1 border-2 border-red-300 rounded-xl hover:border-red-600 hover:scale-105 transition duration-300 ease-out"
+      [routerLink]="['edit', contact.id]"
+    >
+      Edit
+    </button>
+    <button
+      class="m-3 px-2 py-1 border-2 border-red-300 rounded-xl hover:border-red-600 hover:scale-105 transition duration-300 ease-out"
+      (click)="delete(contact.id)"
+    >
+      Delete
+    </button>
+  </div>
+</div>
+}

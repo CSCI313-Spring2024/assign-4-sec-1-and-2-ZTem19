@@ -1,0 +1,74 @@
+<div
+  class="container w-auto m-10 border-2 rounded-br-xl rounded-tl-xl border-red-800"
+>
+  <h2 class="text-lg m-3 font-bold">Edit Contact</h2>
+  <form novalidate onsubmit="return false;">
+    <div class="flex">
+      <div class="flex flex-col">
+        <div class="m-3">
+          <label class="" for="firstname">First Name:</label>
+        </div>
+        <div class="m-3">
+          <label for="lastname">Last Name:</label>
+        </div>
+        <div class="m-3">
+          <label class="" for="phonenum">Phone Number:</label>
+        </div>
+        <div class="m-3">
+          <label class="" for="emailadr">Email Address:</label>
+        </div>
+      </div>
+      <div class="flex flex-col flex-grow [&>*]:m-2.25 [&>*]:py-0.5">
+        <input
+          class="border-1 border-gray-300 mr-5"
+          type="text"
+          name="firstname"
+          id=""
+          #firstName
+          [ngModel]="this.contact?.fname"
+        />
+        <input
+          class="border-1 border-gray-300 mr-5"
+          type="text"
+          name="lastname"
+          id=""
+          #lastName
+          [ngModel]="this.contact?.lname"
+        />
+        <input
+          class="border-1 border-gray-300 mr-5"
+          type="text"
+          name="phonenum"
+          id=""
+          #phoneNum
+          [ngModel]="this.contact?.number"
+        />
+        <input
+          class="border-1 border-gray-300 mr-5"
+          type="text"
+          name="emailadr"
+          id=""
+          #emailAdr
+          [ngModel]="this.contact?.emailAdr"
+        />
+      </div>
+    </div>
+    <div class="my-3 flex justify-end items-center">
+      <hr class="flex-grow ml-5" />
+      <button
+        class="p-2 mx-5 rounded-md border-2 border-red-300 hover:border-red-500 hover:scale-105 transition duration-300 ease-out"
+        (click)="
+          save(firstName.value, lastName.value, phoneNum.value, emailAdr.value)
+        "
+      >
+        Save
+      </button>
+      <button
+        class="p-2 mx-5 rounded-md border-2 border-red-300 hover:border-red-500 hover:scale-105 transition duration-300 ease-out"
+        routerLink=""
+      >
+        Cancel
+      </button>
+    </div>
+  </form>
+</div>
