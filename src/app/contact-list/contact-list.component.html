@@ -1,26 +1,47 @@
-@for(contact of contacts; track contact){
-<div
-  class="w-auto container m-10 border-2 border-red-800 rounded-tl-xl rounded-br-xl p-5"
->
-  <h2 class="font-bold mb-2 text-lg">
-    {{ contact.fname }} {{ contact.lname }}
-  </h2>
-  <p class="p-1">{{ contact.number }}</p>
-  <p class="p-1">{{ contact.emailAdr }}</p>
-  <div class="w-auto flex items-center justify-end">
+<div class="py-5">
+  <div class="flex flex px-3">
+    <label class="ml-3" for="searchBar">Search</label>
+    <input
+      class="ml-3 border-1 border-black-100"
+      type="text"
+      id="searchBar"
+      #searchName
+      (keyup)="filterContacts(searchName.value)"
+    />
+  </div>
+  @for(contact of contacts; track contact){
+  <div
+    class="w-auto container my-1 mx-3 border-2 border-red-800 rounded-tr-xl rounded-bl-xl p-3 px-3"
+  >
+    <h2 class="font-bold mb-1 text-lg">
+      {{ contact.fname }} {{ contact.lname }}
+    </h2>
+    <p class="p-1">{{ contact.number }}</p>
+    <p class="p-1">{{ contact.emailAdr }}</p>
+    <div class="w-auto flex items-center justify-end">
+      <button
+        class="m-1 px-2 py-1 border-2 border-red-300 rounded-xl hover:border-red-600 hover:scale-105 transition duration-300 ease-out"
+        [routerLink]="['edit', contact.id]"
+      >
+        Edit
+      </button>
+      <hr class="flex-grow" />
+
+      <button
+        class="m-1 px-2 py-1 border-2 border-red-300 rounded-xl hover:border-red-600 hover:scale-105 transition duration-300 ease-out"
+        (click)="delete(contact.id)"
+      >
+        Delete
+      </button>
+    </div>
+  </div>
+  }
+  <div class="flex items-center m-3">
     <hr class="flex-grow" />
     <button
-      class="m-3 px-2 py-1 border-2 border-red-300 rounded-xl hover:border-red-600 hover:scale-105 transition duration-300 ease-out"
-      [routerLink]="['edit', contact.id]"
+      class="p-2 ml-2 rounded-md border-2 border-red-300 hover:border-red-500 hover:scale-105 transition duration-300 ease-out"
     >
-      Edit
-    </button>
-    <button
-      class="m-3 px-2 py-1 border-2 border-red-300 rounded-xl hover:border-red-600 hover:scale-105 transition duration-300 ease-out"
-      (click)="delete(contact.id)"
-    >
-      Delete
+      Add
     </button>
   </div>
 </div>
-}

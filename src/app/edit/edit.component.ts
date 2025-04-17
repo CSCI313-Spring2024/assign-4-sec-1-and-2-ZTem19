@@ -1,4 +1,4 @@
-import { Component, inject, Input, OnInit } from '@angular/core';
+import { Component, inject, Input, OnChanges, OnInit } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { ContactService } from '../contact.service';
 import { Contact } from '../contact';
@@ -10,7 +10,7 @@ import { Router, RouterLink } from '@angular/router';
   templateUrl: './edit.component.html',
   styleUrl: './edit.component.css',
 })
-export class EditComponent implements OnInit {
+export class EditComponent implements OnChanges {
   dataService = inject(ContactService);
   router = inject(Router);
   errorMsg: string = '';
@@ -18,7 +18,7 @@ export class EditComponent implements OnInit {
   @Input() id?: number;
   contact?: Contact;
 
-  ngOnInit() {
+  ngOnChanges() {
     if (this.id) {
       this.contact = this.dataService.getContactById(this.id);
       console.log('Id: ' + this.id);

@@ -1,17 +1,20 @@
-import { Injectable } from '@angular/core';
+import { Injectable, OnInit } from '@angular/core';
 import { contacts } from './data';
 import { Contact } from './contact';
-import { first, last } from 'rxjs';
+import { BehaviorSubject, first, last, Observable, of } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
 })
 export class ContactService {
   constructor() {}
-  contactCounter = contacts.length;
+  contactCounter: number = contacts.length;
+  contactsSubject: BehaviorSubject<Contact[]> = new BehaviorSubject<Contact[]>(
+    contacts
+  );
 
-  getContacts(): Contact[] {
-    return contacts;
+  getContacts(): BehaviorSubject<Contact[]> {
+    return this.contactsSubject;
   }
 
   addContact(
@@ -27,6 +30,7 @@ export class ContactService {
       number,
       emailAdr,
     });
+    this.contactsSubject.next(contacts);
     console.log(
       `Pushed new contact: ${fname}, ${lname}, ${number}, ${emailAdr}`
     );
@@ -45,6 +49,7 @@ export class ContactService {
     }
     console.log(`Deleted contact: ${contacts[index].fname}`);
     contacts.splice(index, 1);
+    this.contactsSubject.next(contacts);
   }
 
   getContactById(id: number): Contact {
@@ -79,6 +84,7 @@ export class ContactService {
         break;
       }
     }
+    this.contactsSubject.next(contacts);
   }
 
   //Used for debugging

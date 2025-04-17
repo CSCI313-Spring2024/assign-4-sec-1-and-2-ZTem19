@@ -10,7 +10,6 @@ import { Router, RouterLink } from '@angular/router';
 export class AddContactComponent {
   contactService = inject(ContactService);
   router = inject(Router);
-  errorMsg: string = '';
 
   addContact(fname: string, lname: string, phoneNum: string, emailAdr: string) {
     this.contactService.addContact(
